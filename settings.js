@@ -6,14 +6,13 @@ module.exports = function(app, configurations, express) {
   nconf.argv().env().file({ file: 'local.json' });
 
   // Configuration
-
   app.configure(function(){
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     app.set('view options', { layout: false });
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-    if (!process.env.NODE_ENV) {
+    if (nconf.get('debug')) {
       app.use(express.logger('dev'));
     }
     app.use(express.static(__dirname + '/public'));
@@ -26,6 +25,12 @@ module.exports = function(app, configurations, express) {
       // initial cookieing.
       duration: 24 * 60 * 60 * 1000 * 28 // 4 weeks
     }));
+    app.use(function(req, res, next) {
+      res.locals.session = req.session;
+      res.locals.debug = nconf.get('debug');
+      next();
+    });
+    app.locals.pretty = true;
     app.use(app.router);
     app.use(function(req, res, next) {
       res.status(404);
