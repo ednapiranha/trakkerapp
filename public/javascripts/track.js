@@ -6,20 +6,16 @@ define(['jquery', 'nunjucks', 'templates'],
   'use strict';
 
   var self = {
-    add: function (form) {
+    update: function (form) {
       $.ajax({
         url: form.data('url'),
         data: form.serialize(),
-        type: 'POST',
+        type: 'PUT',
         dataType: 'json'
       }).done(function (data) {
-        body.find('section').html(
-          nunjucks.env.getTemplate(data.template).render({
-            data: data
-          })
-        );
+        console.log('updated track');
       }).fail(function (data) {
-        console.log('could not add tracklist');
+        console.log('could not update track');
       });
     }
   };

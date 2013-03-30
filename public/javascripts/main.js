@@ -1,5 +1,5 @@
-define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'nunjucks', 'templates'],
-  function ($, authenticate, localSettings, tracklist, nunjucks) {
+define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'track', 'nunjucks', 'templates'],
+  function ($, authenticate, localSettings, tracklist, track, nunjucks) {
 
   'use strict';
 
@@ -13,15 +13,24 @@ define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'nunjucks', 'te
   var body = $('body');
 
   var currentUser = localStorage.getItem('personaEmail');
+  var windowPath = window.location.pathname;
 
-  if (currentUser) {
-    body.find('section').html(
-      nunjucks.env.getTemplate('dashboard.html').render()
-    );
+  if (windowPath !== '/') {
+    $.get(windowPath, function (data) {
+      body.find('section').html(
+        nunjucks.env.getTemplate(data.template).render({ data: data.data })
+      );
+    });
   } else {
-    body.find('section').html(
-      nunjucks.env.getTemplate('home.html').render()
-    );
+    if (currentUser) {
+      body.find('section').html(
+        nunjucks.env.getTemplate('dashboard.html').render()
+      );
+    } else {
+      body.find('section').html(
+        nunjucks.env.getTemplate('home.html').render()
+      );
+    }
   }
 
   body.on('click', function (ev) {
@@ -47,6 +56,11 @@ define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'nunjucks', 'te
       case 'tracklist-add':
         ev.preventDefault();
         tracklist.add(self);
+        break;
+
+      case 'track-edit':
+        ev.preventDefault();
+        track.update(self);
         break;
     }
   });

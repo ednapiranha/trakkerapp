@@ -1,0 +1,13 @@
+<h1>{{ data.title }}</h1>
+<ol>
+  {% for track in data.tracks %}
+    <li>
+      <form method="post" data-action="track-edit" data-url="/tracks/{{ track.id }}">
+        <input type="text" name="title" value="{{ track.title }}">
+        <input type="text" name="keywords" value="{{ track.keywords }}">
+        <input type="hidden" name="tracklist_id" value="{{ track.tracklist_id }}">
+        <button type="submit">Update</button>
+      </form>
+    </li>
+  {% endfor %}
+</ol>
