@@ -2,3 +2,7 @@
 node_modules
 local.json
 public/javascripts/build
+public/javascripts/lib/nunjucks.js
+public/stylesheets/main-min.css
+public/javascripts/local_settings.js
+public/javascripts/templates.js
