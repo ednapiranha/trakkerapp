@@ -43,7 +43,7 @@ In production mode, run the following:
 
 ## Minifying files with Grunt
 
-> grunt
+> node_modules/grunt-cli/bin/grunt
 
 ## Configure client-side settings
 

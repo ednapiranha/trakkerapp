@@ -1,17 +1,10 @@
-define(['jquery', 'local_settings', 'nunjucks', 'templates'],
-  function ($, localSettings, nunjucks) {
+define(['jquery', 'nunjucks', 'templates'],
+  function ($, nunjucks) {
 
   var currentUser = localStorage.getItem('personaEmail');
   var body = $('body');
 
   'use strict';
-
-  var DEBUG = localSettings.DEBUG;
-
-  if (DEBUG || !nunjucks.env) {
-    // If not precompiled, create an environment with an HTTP loader
-    nunjucks.env = new nunjucks.Environment(new nunjucks.HttpLoader('/templates'));
-  }
 
   navigator.id.watch({
     loggedInUser: currentUser,

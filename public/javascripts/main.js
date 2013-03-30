@@ -12,9 +12,17 @@ define(['jquery', 'authenticate', 'local_settings', 'nunjucks', 'templates'],
 
   var body = $('body');
 
-  body.find('section').html(
-    nunjucks.env.getTemplate('home.html').render()
-  );
+  var currentUser = localStorage.getItem('personaEmail');
+
+  if (currentUser) {
+    body.find('section').html(
+      nunjucks.env.getTemplate('dashboard.html').render()
+    );
+  } else {
+    body.find('section').html(
+      nunjucks.env.getTemplate('home.html').render()
+    );
+  }
 
   body.on('click', function(ev) {
     var self = $(ev.target);
