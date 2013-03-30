@@ -13,7 +13,11 @@ define(['jquery', 'nunjucks', 'templates'],
         type: 'POST',
         dataType: 'json'
       }).done(function (data) {
-        console.log(data)
+        body.find('section').html(
+          nunjucks.env.getTemplate('tracks.html').render({
+            tracks: data.tracks
+          })
+        );
       }).fail(function (data) {
         console.log('could not add tracklist');
       });

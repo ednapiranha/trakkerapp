@@ -47,13 +47,13 @@ module.exports = function(app, isLoggedIn) {
   });
 
   app.post('/tracklists', isLoggedIn, function(req, res) {
-    tracklist.add(req, function (err, tracklist) {
+    tracklist.add(req, function (err, tracks) {
       if (err) {
         res.status(400);
         res.json({ 'message': err });
       } else {
         res.json({
-          'tracklists': tracklist
+          'tracks': tracks
         });
       }
     })
