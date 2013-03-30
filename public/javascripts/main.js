@@ -1,5 +1,5 @@
-define(['jquery', 'authenticate', 'local_settings', 'nunjucks', 'templates'],
-  function ($, authenticate, localSettings, nunjucks) {
+define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'nunjucks', 'templates'],
+  function ($, authenticate, localSettings, tracklist, nunjucks) {
 
   'use strict';
 
@@ -24,7 +24,7 @@ define(['jquery', 'authenticate', 'local_settings', 'nunjucks', 'templates'],
     );
   }
 
-  body.on('click', function(ev) {
+  body.on('click', function (ev) {
     var self = $(ev.target);
 
     switch (self.data('action')) {
@@ -36,6 +36,17 @@ define(['jquery', 'authenticate', 'local_settings', 'nunjucks', 'templates'],
       case 'logout':
         ev.preventDefault();
         navigator.id.logout();
+        break;
+    }
+  });
+
+  body.on('submit', function (ev) {
+    var self = $(ev.target);
+
+    switch (self.data('action')) {
+      case 'tracklist-add':
+        ev.preventDefault();
+        tracklist.add(self);
         break;
     }
   });

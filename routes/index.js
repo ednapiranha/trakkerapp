@@ -40,7 +40,7 @@ module.exports = function(app, isLoggedIn) {
         res.json({ 'message': 'Not found' });
       } else {
         res.json({
-          'tracklists': JSON.parse(tracklists)
+          'tracklists': tracklists
         });
       }
     })
@@ -53,7 +53,7 @@ module.exports = function(app, isLoggedIn) {
         res.json({ 'message': err });
       } else {
         res.json({
-          'tracklists': JSON.parse(tracklist)
+          'tracklists': tracklist
         });
       }
     })
