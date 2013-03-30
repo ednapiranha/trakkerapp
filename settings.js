@@ -8,7 +8,6 @@ module.exports = function(app, configurations, express) {
   // Configuration
   app.configure(function(){
     app.set('views', __dirname + '/views');
-    app.set('view engine', 'jade');
     app.set('view options', { layout: false });
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -18,11 +17,7 @@ module.exports = function(app, configurations, express) {
     app.use(express.static(__dirname + '/public'));
     app.use(clientSessions({
       cookieName: nconf.get('session_cookie'),
-      secret: nconf.get('session_secret'), // MUST be set
-      // true session duration:
-      // will expire after duration (ms)
-      // from last session.reset() or
-      // initial cookieing.
+      secret: nconf.get('session_secret'),
       duration: 24 * 60 * 60 * 1000 * 28 // 4 weeks
     }));
     app.use(function(req, res, next) {
@@ -34,17 +29,17 @@ module.exports = function(app, configurations, express) {
     app.use(app.router);
     app.use(function(req, res, next) {
       res.status(404);
-      res.render('404', { url: req.url, layout: false });
+      res.json({ 'message': 'Page not found' });
       return;
     });
     app.use(function(req, res, next) {
       res.status(403);
-      res.render('403', { url: req.url, layout: false });
+      res.json({ 'message': 'Not allowed' });
       return;
     });
     app.use(function(err, req, res, next) {
       res.status(err.status || 500);
-      res.render('500', { error: err, layout: false });
+      res.json({ 'message': 'Something went wrong' });
     });
   });
 

@@ -1,48 +1,34 @@
-define(['jquery'],
-  function($) {
+define(['jquery', 'authenticate', 'local_settings', 'nunjucks', 'templates'],
+  function ($, authenticate, localSettings, nunjucks) {
 
   'use strict';
 
+  var DEBUG = localSettings.DEBUG;
+
+  if (DEBUG || !nunjucks.env) {
+    // If not precompiled, create an environment with an HTTP loader
+    nunjucks.env = new nunjucks.Environment(new nunjucks.HttpLoader('/templates'));
+  }
+
   var body = $('body');
 
-  body.on('click', '#login', function(ev) {
-    ev.preventDefault();
+  body.find('section').html(
+    nunjucks.env.getTemplate('home.html').render()
+  );
 
-    navigator.id.get(function(assertion) {
-      if (!assertion) {
-        return;
-      }
+  body.on('click', function(ev) {
+    var self = $(ev.target);
 
-      $.ajax({
-        url: '/persona/verify',
-        type: 'POST',
-        data: { assertion: assertion },
-        dataType: 'json',
-        cache: false
-      }).done(function(data) {
-        if (data.status === 'okay') {
-          document.location.href = '/';
-        } else {
-          console.log('Login failed because ' + data.reason);
-        }
-      });
-    });
-  });
+    switch (self.data('action')) {
+      case 'login':
+        ev.preventDefault();
+        navigator.id.request();
+        break;
 
-  body.on('click', '#logout', function(ev) {
-    ev.preventDefault();
-
-    $.ajax({
-      url: '/persona/logout',
-      type: 'POST',
-      dataType: 'json',
-      cache: false
-    }).done(function(data) {
-      if (data.status === 'okay') {
-        document.location.href = '/';
-      } else {
-        console.log('Logout failed because ' + data.reason);
-      }
-    });
+      case 'logout':
+        ev.preventDefault();
+        navigator.id.logout();
+        break;
+    }
   });
 });

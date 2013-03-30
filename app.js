@@ -4,7 +4,10 @@ var app = express();
 var server = require('http').createServer(app);
 var nconf = require('nconf');
 var settings = require('./settings')(app, configurations, express);
+var nunjucks = require('nunjucks');
+var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('views'));
 
+env.express(app);
 nconf.argv().env().file({ file: 'local.json' });
 
 /* Filters for routes */
@@ -22,19 +25,6 @@ require('express-persona')(app, {
 });
 
 // routes
-require("./routes")(app, nconf, isLoggedIn);
-
-app.get('/404', function(req, res, next){
-  next();
-});
-
-app.get('/403', function(req, res, next){
-  err.status = 403;
-  next(new Error('not allowed!'));
-});
-
-app.get('/500', function(req, res, next){
-  next(new Error('something went wrong!'));
-});
+require('./routes')(app, isLoggedIn);
 
 app.listen(process.env.PORT || nconf.get('port'));

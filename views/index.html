@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Trakker</title>
+    <meta content="width=device-width" height="device-height" user-scalable="no"
+          initial-scale="1.0" maximum-scale="1.0" minimum-scale="1.0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="chrome=1" http-equiv="X-UA-Compatible">
+    <link rel="shortcut icon" href="/images/favicon.png">
+    {% if debug %}
+      <link type="text/css" rel="stylesheet" href="/stylesheets/main.css">
+    {% else %}
+      <link type="text/css" rel="stylesheet" href="/stylesheets/main-min.css">
+    {% endif %}
+  </head>
+  <body>
+    <header>
+      <h1>Trakker</h1>
+      <div class="actions">
+        {% if session.email %}
+          <a href="javascript:;" data-action="logout">Sign out</a>
+        {% else %}
+          <a href="javascript:;" data-action="login">Sign in</a>
+        {% endif %}
+      </div>
+    </head>
+    <section></section>
+    <footer></footer>
+    <script src="https://login.persona.org/include.js"></script>
+    {% if debug %}
+      <script src="/javascripts/require.js" data-main="/javascripts/config"></script>
+    {% else %}
+      <script src="/javascripts/require.js" src="/javascripts/build/trakker.js"></script>
+    {% endif %}
+  </body>
+</html>
