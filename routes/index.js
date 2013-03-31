@@ -1,44 +1,72 @@
 'use strict';
 
-module.exports = function(app, isLoggedIn) {
+module.exports = function(app, isLoggedIn, hasProfile) {
   var tracklist = require('../lib/tracklist');
   var user = require('../lib/user');
   var track = require('../lib/track');
 
   app.get('/', function (req, res) {
-    res.render('index.html');
-  });
-
-  app.get('/me', isLoggedIn, function (req, res) {
     user.loadProfile(req, function (err, u) {
+      var username = null;
+
       if (u) {
         req.session.userId = u.id;
+        username = u.username;
+      }
 
-        if (u.username) {
+      if (req.xhr) {
+        if (req.session.email) {
           res.json({
-            hasUsername: true,
-            username: u.username,
-            location: u.location
+            template: 'dashboard.html',
+            username: username
           });
         } else {
           res.json({
-            hasUsername: false,
-            username: null,
-            location: u.location
+            template: 'home.html',
+            username: username
           });
         }
       } else {
-        res.status(404);
-        res.json({ 'message': 'User not found' });
+        res.render('index.html');
       }
     });
   });
 
-  app.get('/tracklists/mine', isLoggedIn, function (req, res) {
-    tracklist.getMine(req, function (err, tracklists) {
+  app.get('/me', isLoggedIn, function (req, res, next) {
+    user.loadProfile(req, function (err, u) {
       if (err) {
         res.status(404);
-        res.json({ 'message': 'Not found' });
+        next();
+      } else {
+        req.session.userId = u.id;
+
+        res.json({
+          template: 'dashboard.html',
+          username: u.username
+        });
+      }
+    });
+  });
+
+  app.post('/me', isLoggedIn, function (req, res, next) {
+    user.saveProfile(req, function (err, u) {
+      if (err) {
+        res.status(400);
+        next(err);
+      } else {
+        res.json({
+          template: 'profile.html',
+          user: u
+        });
+      }
+    });
+  });
+
+  app.get('/tracklists/mine', isLoggedIn, hasProfile, function (req, res, next) {
+    tracklist.getMine(req, function (err, tracklists) {
+      if (err) {
+        res.status(400);
+        next(err);
       } else {
         res.json({
           'template': 'tracklists.html',
@@ -48,15 +76,16 @@ module.exports = function(app, isLoggedIn) {
     })
   });
 
-  app.post('/tracklists', isLoggedIn, function (req, res) {
+  app.post('/tracklists', isLoggedIn, hasProfile, function (req, res, next) {
     tracklist.add(req, function (err, data) {
       if (err) {
         res.status(400);
-        res.json({ 'message': err });
+        next(err);
       } else {
         res.json({
           'template': 'tracklist.html',
           'data': {
+            'id': data.id,
             'title': data.title,
             'artist': data.artist,
             'tracks': data.tracks
@@ -66,17 +95,18 @@ module.exports = function(app, isLoggedIn) {
     })
   });
 
-  app.get('/tracklists/:id', function (req, res) {
+  app.get('/tracklists/:id', function (req, res, next) {
     tracklist.get(req, function (err, tl) {
       if (err) {
         res.status(404);
-        res.json({ 'message': err });
+        next();
       } else {
         if (req.xhr) {
           tl.getTracks({ order: 'pos' }).success(function (tr) {
             res.json({
               'template': 'tracklist.html',
               'data': {
+                'id': tl.id,
                 'title': tl.title,
                 'artist': tl.artist,
                 'tracks': tr
@@ -93,11 +123,15 @@ module.exports = function(app, isLoggedIn) {
     });
   });
 
-  app.put('/tracks/:id', isLoggedIn, function (req, res) {
+  app.put('/tracks/:id', isLoggedIn, hasProfile, function (req, re) {
     track.update(req, function (err, track) {
       if (err) {
-        res.status(400);
-        res.json({ 'message': err });
+        if (req.xhr) {
+          res.status(400);
+          res.json({ 'message': err.toString() });
+        } else {
+          res.redirect('/');
+        }
       } else {
         res.json({
           'track': track

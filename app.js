@@ -20,11 +20,19 @@ var isLoggedIn = function(req, res, next) {
   }
 };
 
+var hasProfile = function(req, res, next) {
+  if (req.session.username) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+};
+
 require('express-persona')(app, {
   audience: nconf.get('domain') + ':' + nconf.get('authPort')
 });
 
 // routes
-require('./routes')(app, isLoggedIn);
+require('./routes')(app, isLoggedIn, hasProfile);
 
 app.listen(process.env.PORT || nconf.get('port'));

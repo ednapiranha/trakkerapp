@@ -13,9 +13,10 @@ define(['jquery', 'nunjucks', 'templates'],
         type: 'POST',
         dataType: 'json'
       }).done(function (data) {
+        window.history.pushState(null, null, '/tracklists/' + data.data.id);
         body.find('section').html(
           nunjucks.env.getTemplate(data.template).render({
-            data: data
+            data: data.data
           })
         );
       }).fail(function (data) {

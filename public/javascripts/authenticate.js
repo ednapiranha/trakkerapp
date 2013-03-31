@@ -1,5 +1,5 @@
-define(['jquery', 'nunjucks', 'templates'],
-  function ($, nunjucks) {
+define(['jquery', 'user', 'nunjucks', 'templates'],
+  function ($, user, nunjucks) {
 
   var currentUser = localStorage.getItem('personaEmail');
   var body = $('body');
@@ -17,9 +17,7 @@ define(['jquery', 'nunjucks', 'templates'],
           localStorage.setItem('personaEmail', res.email);
           body.find('header').find('a').data('action', 'logout')
                                        .text('Sign out');
-          body.find('section').html(
-            nunjucks.env.getTemplate('dashboard.html').render()
-          );
+          user.getProfile();
         },
         error: function(res, status, xhr) {
           self.status

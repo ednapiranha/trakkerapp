@@ -29,17 +29,38 @@ module.exports = function(app, configurations, express) {
     app.use(app.router);
     app.use(function(req, res, next) {
       res.status(404);
-      res.json({ 'message': 'Page not found' });
+      if (req.xhr) {
+        res.json({ 'message': 'Page not found' });
+      } else {
+        res.render('404.html');
+      }
       return;
     });
     app.use(function(req, res, next) {
       res.status(403);
-      res.json({ 'message': 'Not allowed' });
+      if (req.xhr) {
+        res.json({ 'message': 'Page not found' });
+      } else {
+        res.render('403.html');
+      }
+      return;
+    });
+    app.use(function(err, req, res, next) {
+      if (req.xhr) {
+        res.status(400);
+        res.json({ 'message': err.toString() });
+      } else {
+        res.redirect('/');
+      }
       return;
     });
     app.use(function(err, req, res, next) {
       res.status(err.status || 500);
-      res.json({ 'message': 'Something went wrong' });
+      if (req.xhr) {
+        res.json({ 'message': 'Something went wrong' });
+      } else {
+        res.render('500.html');
+      }
     });
   });
 
