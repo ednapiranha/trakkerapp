@@ -123,15 +123,11 @@ module.exports = function(app, isLoggedIn, hasProfile) {
     });
   });
 
-  app.put('/tracks/:id', isLoggedIn, hasProfile, function (req, re) {
+  app.put('/tracks/:id', isLoggedIn, hasProfile, function (req, req, next) {
     track.update(req, function (err, track) {
       if (err) {
-        if (req.xhr) {
-          res.status(400);
-          res.json({ 'message': err.toString() });
-        } else {
-          res.redirect('/');
-        }
+        res.status(400);
+        next(err);
       } else {
         res.json({
           'track': track

@@ -47,7 +47,7 @@ define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'track', 'user'
         track.update(self);
         break;
 
-      case 'profile-update':
+      case 'profile-edit':
         ev.preventDefault();
         user.update(self);
         break;
