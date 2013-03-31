@@ -123,7 +123,7 @@ module.exports = function(app, isLoggedIn, hasProfile) {
     });
   });
 
-  app.put('/tracks/:id', isLoggedIn, hasProfile, function (req, req, next) {
+  app.put('/tracks/:id', isLoggedIn, hasProfile, function (req, res, next) {
     track.update(req, function (err, track) {
       if (err) {
         res.status(400);
