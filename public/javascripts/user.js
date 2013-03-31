@@ -1,15 +1,9 @@
-define(['jquery', 'nunjucks', 'templates'],
-  function ($, nunjucks) {
-
-  var body = $('body');
-
+define(['jquery', 'utils'],
+  function ($, utils) {
   'use strict';
 
-  var _loadDefaultTemplate = function (data) {
-    body.find('section').html(
-      nunjucks.env.getTemplate('profile.html').render({ data: data.data })
-    );
-  };
+  var body = $('body');
+  var windowPath = window.location.pathname;
 
   var self = {
     get: function () {
@@ -19,28 +13,31 @@ define(['jquery', 'nunjucks', 'templates'],
         dataType: 'json'
       }).done(function (data) {
         console.log('retrieved profile');
-        body.find('section').html(
-          nunjucks.env.getTemplate(data.template).render({ data: data.data })
-        );
+        if (windowPath === '/') {
+          utils.loadTemplate(data.template, data);
+        } else {
+          $.get(windowPath, function (data) {
+            utils.loadTemplate(data.template, data);
+          });
+        }
       }).fail(function (data) {
         console.log('could not retrieve profile');
-        _loadDefaultTemplate(data);
+        utils.loadTemplate('profile.html', data);
       });
     },
 
-    update: function () {
+    update: function (form) {
       $.ajax({
         url: '/me',
-        type: 'GET',
+        type: 'POST',
+        data: form.serialize(),
         dataType: 'json'
       }).done(function (data) {
         console.log('retrieved profile');
-        body.find('section').html(
-          nunjucks.env.getTemplate(data.template).render({ data: data.data })
-        );
+        utils.loadTemplate(data.template, data);
       }).fail(function (data) {
-        console.log('could not retrieve profile');
-        _loadDefaultTemplate(data);
+        console.log('could not update profile');
+        utils.loadTemplate('profile.html', data);
       });
     }
   };

@@ -1,6 +1,5 @@
-define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'track', 'user', 'nunjucks', 'templates'],
-  function ($, authenticate, localSettings, tracklist, track, user, nunjucks) {
-
+define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'track', 'user', 'utils', 'nunjucks', 'templates'],
+  function ($, authenticate, localSettings, tracklist, track, user, utils, nunjucks) {
   'use strict';
 
   var DEBUG = localSettings.DEBUG;
@@ -11,9 +10,6 @@ define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'track', 'user'
   }
 
   var body = $('body');
-
-  var currentUser = localStorage.getItem('personaEmail');
-  var windowState = window.history.state;
 
   user.get();
 
@@ -29,6 +25,11 @@ define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'track', 'user'
       case 'logout':
         ev.preventDefault();
         navigator.id.logout();
+        break;
+
+      case 'tracklist-new':
+        ev.preventDefault();
+        utils.loadTemplate('tracklist_new.html', {});
         break;
     }
   });

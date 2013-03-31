@@ -1,9 +1,12 @@
 dashboard
 
-<form method="post" data-action="tracklist-add" data-url="/tracklists">
-  Title <input type="text" name="title" required>
-  Artist <input type="text" name="artist" required>
-  Released <input type="text" name="released">
-  <textarea name="tracks" rows="3" cols="100" required></textarea>
-  <button type="submit">Add</button>
-</form>
+<a href="javascript:;" data-action="tracklist-new">Add a new tracklist</a>
+
+<h2>tracklists</h2>
+<ul>
+  {% for tracklist in data %}
+    <li>
+      <a href="/tracklists/{{ tracklist.id }}">{{ tracklist.title }}</a>
+    </li>
+  {% endfor %}
+</ul>

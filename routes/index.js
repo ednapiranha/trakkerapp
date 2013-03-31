@@ -1,11 +1,11 @@
 'use strict';
 
-module.exports = function(app, isLoggedIn, hasProfile) {
+module.exports = function (app, isLoggedIn, hasProfile) {
   var tracklist = require('../lib/tracklist');
   var user = require('../lib/user');
   var track = require('../lib/track');
 
-  app.get('/', function (req, res) {
+  app.get('/', function (req, res, next) {
     user.loadProfile(req, function (err, u) {
       var username = null;
 
@@ -16,14 +16,10 @@ module.exports = function(app, isLoggedIn, hasProfile) {
 
       if (req.xhr) {
         if (req.session.email) {
-          res.json({
-            template: 'dashboard.html',
-            username: username
-          });
+          res.render('index.html');
         } else {
           res.json({
-            template: 'home.html',
-            username: username
+            template: 'home.html'
           });
         }
       } else {
@@ -39,10 +35,16 @@ module.exports = function(app, isLoggedIn, hasProfile) {
         next();
       } else {
         req.session.userId = u.id;
-
-        res.json({
-          template: 'dashboard.html',
-          username: u.username
+        tracklist.getMine(req, function (err, tracklists) {
+          if (err) {
+            res.status(400);
+            next(err);
+          } else {
+            res.json({
+              template: 'dashboard.html',
+              data: tracklists
+            });
+          }
         });
       }
     });
@@ -54,26 +56,13 @@ module.exports = function(app, isLoggedIn, hasProfile) {
         res.status(400);
         next(err);
       } else {
+        res.session.username = u.username;
         res.json({
           template: 'profile.html',
           user: u
         });
       }
     });
-  });
-
-  app.get('/tracklists/mine', isLoggedIn, hasProfile, function (req, res, next) {
-    tracklist.getMine(req, function (err, tracklists) {
-      if (err) {
-        res.status(400);
-        next(err);
-      } else {
-        res.json({
-          'template': 'tracklists.html',
-          'data': tracklists
-        });
-      }
-    })
   });
 
   app.post('/tracklists', isLoggedIn, hasProfile, function (req, res, next) {

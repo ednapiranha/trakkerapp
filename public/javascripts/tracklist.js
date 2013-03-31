@@ -1,8 +1,5 @@
-define(['jquery', 'nunjucks', 'templates'],
-  function ($, nunjucks) {
-
-  var body = $('body');
-
+define(['jquery', 'utils'],
+  function ($, utils) {
   'use strict';
 
   var self = {
@@ -13,12 +10,7 @@ define(['jquery', 'nunjucks', 'templates'],
         type: 'POST',
         dataType: 'json'
       }).done(function (data) {
-        window.history.pushState(null, null, '/tracklists/' + data.data.id);
-        body.find('section').html(
-          nunjucks.env.getTemplate(data.template).render({
-            data: data.data
-          })
-        );
+        utils.loadTemplate(data.template, data);
       }).fail(function (data) {
         console.log('could not add tracklist');
       });

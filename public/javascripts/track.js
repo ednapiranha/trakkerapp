@@ -1,8 +1,5 @@
-define(['jquery', 'nunjucks', 'templates'],
-  function ($, nunjucks) {
-
-  var body = $('body');
-
+define(['jquery'],
+  function ($) {
   'use strict';
 
   var self = {
