@@ -73,52 +73,59 @@ module.exports = function (app, isLoggedIn, hasProfile) {
         next(err);
       } else {
         res.json({
-          'template': 'tracklist.html',
-          'data': {
-            'id': data.id,
-            'title': data.title,
-            'artist': data.artist,
-            'tracks': data.tracks
+          template: 'tracklist.html',
+          data: {
+            id: data.id,
+            title: data.title,
+            artist: data.artist,
+            tracks: data.tracks
           }
         });
       }
-    })
+    });
   });
 
-  var displayTracklists = function (template, req, res, next) {
+  var displayTracklists = function (action, template, req, res, next) {
     tracklist.get(req, function (err, tl) {
-      if (err) {
-        res.status(404);
-        next();
+      var owner = (tl.user_id === parseInt(req.session.userId, 10));
+      if (action === 'edit' && !req.session.email && !owner) {
+        res.render('index.html');
       } else {
-        if (req.xhr) {
-          tl.getTracks({ order: 'pos' }).success(function (tr) {
-            res.json({
-              'template': template,
-              'data': {
-                'id': tl.id,
-                'title': tl.title,
-                'artist': tl.artist,
-                'tracks': tr
-              }
-            });
-          }).error(function (err) {
-            res.status(400);
-            res.json({ 'message': err });
-          });
+        if (err) {
+          res.status(404);
+          next();
         } else {
-          res.render('index.html');
+          if (req.xhr) {
+            tl.getTracks({ order: 'pos' }).success(function (tr) {
+              res.json({
+                template: template,
+                data: {
+                  authenticated: !!req.session.email,
+                  owner: owner,
+                  id: tl.id,
+                  title: tl.title,
+                  artist: tl.artist,
+                  tracks: tr
+                }
+              });
+            }).error(function (err) {
+              res.status(400);
+              res.json({ 'message': err });
+            });
+          } else {
+            res.render('index.html');
+          }
         }
       }
     });
   };
 
   app.get('/tracklists/:id', function (req, res, next) {
-    displayTracklists('tracklist.html', req, res, next);
+    displayTracklists('get', 'tracklist.html', req, res, next);
   });
 
-  app.get('/tracklists/:id/edit', function (req, res, next) {
-    displayTracklists('tracklist_edit.html', req, res, next);
+  app.get('/tracklists/:id/edit', isLoggedIn, hasProfile, function (req, res, next) {
+    displayTracklists('edit', 'tracklist_edit.html', req, res, next);
   });
 
   app.put('/tracks/:id', isLoggedIn, hasProfile, function (req, res, next) {
@@ -128,9 +135,9 @@ module.exports = function (app, isLoggedIn, hasProfile) {
         next(err);
       } else {
         res.json({
-          'track': track
+          track: track
         });
       }
-    })
+    });
   });
 };

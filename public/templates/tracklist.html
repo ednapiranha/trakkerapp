@@ -1,4 +1,8 @@
 <h1>{{ data.title }}</h1>
+
+{% if data.authenticated and data.owner %}
+  <a href="/tracklists/{{ data.id }}/edit">edit</a>
+{% endif %}
 <ol>
   {% for track in data.tracks %}
     <li>

@@ -15,7 +15,7 @@ define(['jquery', 'user', 'nunjucks', 'templates'],
         data: { assertion: assertion },
         success: function (res, status, xhr) {
           localStorage.setItem('personaEmail', res.email);
-          body.find('header').find('a').data('action', 'logout')
+          body.find('header').find('.actions a').data('action', 'logout')
                                        .text('Sign out');
           user.get();
         },
@@ -35,7 +35,9 @@ define(['jquery', 'user', 'nunjucks', 'templates'],
         type: 'POST',
         success: function(res, status, xhr) {
           localStorage.removeItem('personaEmail');
-          window.location.reload();
+          body.find('header').find('.actions a').data('action', 'login')
+                                       .text('Sign in');
+          user.get();
         },
         error: function(res, status, xhr) {
           console.log('logout failure ', res);

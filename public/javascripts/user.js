@@ -34,10 +34,10 @@ define(['jquery', 'utils'],
         dataType: 'json'
       }).done(function (data) {
         console.log('retrieved profile');
-        utils.loadTemplate(data.template, data);
+
       }).fail(function (data) {
         console.log('could not update profile');
-        utils.loadTemplate('profile.html', data);
+
       });
     }
   };
