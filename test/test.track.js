@@ -37,17 +37,17 @@ describe('track', function () {
       }).error(function (err) {
         throw new Error(err);
       });
-    Tracklist.all()
-      .success(function (tracklists) {
-        tracklists.forEach(function (t) {
+    Track.all()
+      .success(function (tracks) {
+        tracks.forEach(function (t) {
           t.destroy();
         });
       }).error(function (err) {
         throw new Error(err);
       });
-    Track.all()
-      .success(function (tracks) {
-        tracks.forEach(function (t) {
+    Tracklist.all()
+      .success(function (tracklists) {
+        tracklists.forEach(function (t) {
           t.destroy();
         });
       }).error(function (err) {
@@ -81,6 +81,16 @@ describe('track', function () {
 
     track.update(req, function (err, tr) {
       tr.title.should.equal('new title');
+      done();
+    });
+  });
+
+  it('does not update a track', function (done) {
+    req.body.title = '';
+    req.params.id = currTrack.id;
+
+    track.update(req, function (err, tr) {
+      console.log(tr);
       done();
     });
   });
