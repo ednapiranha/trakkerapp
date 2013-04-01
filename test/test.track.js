@@ -64,6 +64,15 @@ describe('track', function () {
       });
     });
 
+    it('gets a track', function (done) {
+      req.params.id = currTrack.id;
+
+      track.get(req, function (err, t) {
+        should.exist(t);
+        done();
+      });
+    });
+
     it('updates a track', function (done) {
       req.body.title = 'new title';
       req.params.id = currTrack.id;

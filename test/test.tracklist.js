@@ -55,6 +55,24 @@ describe('tracklist', function () {
       });
     });
 
+    it('gets a tracklist', function (done) {
+      req.params.id = currTracklist.id;
+
+      tracklist.get(req, function (err, t) {
+        should.exist(t);
+        done();
+      });
+    });
+
+    it("gets a user's tracklist", function (done) {
+      req.params.id = currTracklist.id;
+
+      tracklist.getMine(req, function (err, t) {
+        should.exist(t);
+        done();
+      });
+    });
+
     it('updates a tracklist', function (done) {
       req.body.title = 'new title';
       req.params.id = currTracklist.id;
