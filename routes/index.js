@@ -11,7 +11,7 @@ module.exports = function (app, isLoggedIn, hasProfile) {
 
       if (u) {
         req.session.userId = u.id;
-        username = u.username;
+        req.session.username = u.username;
       }
 
       if (req.xhr) {
@@ -35,6 +35,7 @@ module.exports = function (app, isLoggedIn, hasProfile) {
         next();
       } else {
         req.session.userId = u.id;
+        req.session.username = u.username;
         tracklist.getMine(req, function (err, tracklists) {
           if (err) {
             res.status(400);
@@ -56,7 +57,7 @@ module.exports = function (app, isLoggedIn, hasProfile) {
         res.status(400);
         next(err);
       } else {
-        res.session.username = u.username;
+        req.session.username = u.username;
         res.json({
           template: 'profile.html',
           user: u

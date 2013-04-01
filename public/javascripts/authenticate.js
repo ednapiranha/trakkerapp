@@ -17,7 +17,7 @@ define(['jquery', 'user', 'nunjucks', 'templates'],
           localStorage.setItem('personaEmail', res.email);
           body.find('header').find('a').data('action', 'logout')
                                        .text('Sign out');
-          user.getProfile();
+          user.get();
         },
         error: function(res, status, xhr) {
           self.status
