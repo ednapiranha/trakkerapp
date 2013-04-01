@@ -84,7 +84,7 @@ module.exports = function (app, isLoggedIn, hasProfile) {
     })
   });
 
-  app.get('/tracklists/:id', function (req, res, next) {
+  var displayTracklists = function (template, req, res, next) {
     tracklist.get(req, function (err, tl) {
       if (err) {
         res.status(404);
@@ -93,7 +93,7 @@ module.exports = function (app, isLoggedIn, hasProfile) {
         if (req.xhr) {
           tl.getTracks({ order: 'pos' }).success(function (tr) {
             res.json({
-              'template': 'tracklist.html',
+              'template': template,
               'data': {
                 'id': tl.id,
                 'title': tl.title,
@@ -110,6 +110,14 @@ module.exports = function (app, isLoggedIn, hasProfile) {
         }
       }
     });
+  };
+
+  app.get('/tracklists/:id', function (req, res, next) {
+    displayTracklists('tracklist.html', req, res, next);
+  });
+
+  app.get('/tracklists/:id/edit', function (req, res, next) {
+    displayTracklists('tracklist_edit.html', req, res, next);
   });
 
   app.put('/tracks/:id', isLoggedIn, hasProfile, function (req, res, next) {
