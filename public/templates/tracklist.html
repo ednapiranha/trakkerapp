@@ -11,6 +11,9 @@
     <li>
       <span>{{ track.startTime }}</span>
       <span>{{ track.title }}</span>
+      {% if track.keywords %}
+        <span class="keywords">{{ track.keywords }}</span>
+      {% endif %}
     </li>
   {% endfor %}
 </ol>
