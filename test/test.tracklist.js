@@ -55,6 +55,13 @@ describe('tracklist', function () {
       });
     });
 
+    it('gets the global tracklists', function (done) {
+      tracklist.global(function (err, t) {
+        should.exist(t);
+        done();
+      });
+    });
+
     it('gets a tracklist', function (done) {
       req.params.id = currTracklist.id;
 
