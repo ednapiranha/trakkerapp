@@ -3,6 +3,7 @@
 {% if data.authenticated and data.owner %}
   <div class="form-actions">
     <a href="/tracklists/{{ data.id }}/edit" class="link">edit</a>
+    <a href="javascript:;" class="link delete" data-action="tracklist-delete" data-url="/tracklists/{{ data.id }}">delete</a>
   </div>
 {% endif %}
 <ol class="display">

@@ -27,6 +27,11 @@ define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'track', 'user'
         navigator.id.logout();
         break;
 
+      case 'tracklist-delete':
+        ev.preventDefault();
+        tracklist.delete(self);
+        break;
+
       case 'track-delete':
         ev.preventDefault();
         track.delete(self);

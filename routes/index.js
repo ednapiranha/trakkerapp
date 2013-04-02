@@ -97,13 +97,13 @@ module.exports = function (app, isLoggedIn, hasProfile) {
 
   var displayTracklists = function (action, template, req, res, next) {
     tracklist.get(req, function (err, tl) {
-      var owner = (tl.user_id === parseInt(req.session.userId, 10));
-      if (action === 'edit' && !req.session.email && !owner) {
-        res.render('index.html');
+      if (err) {
+        res.status(404);
+        next();
       } else {
-        if (err) {
-          res.status(404);
-          next();
+        var owner = (tl.user_id === parseInt(req.session.userId, 10));
+        if (action === 'edit' && !req.session.email && !owner) {
+          res.render('index.html');
         } else {
           if (req.xhr) {
             tl.getTracks({ order: 'pos' }).success(function (tr) {
@@ -136,6 +136,19 @@ module.exports = function (app, isLoggedIn, hasProfile) {
 
   app.get('/tracklists/:id/edit', isLoggedIn, hasProfile, function (req, res, next) {
     displayTracklists('edit', 'tracklist_edit.html', req, res, next);
+  });
+
+  app.delete('/tracklists/:id', function (req, res, next) {
+    tracklist.delete(req, function (err, message) {
+      if (err) {
+        res.status(400);
+        next(err);
+      } else {
+        res.json({
+          message: message
+        });
+      }
+    });
   });
 
   app.put('/tracks/:id', isLoggedIn, hasProfile, function (req, res, next) {

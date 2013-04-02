@@ -15,6 +15,17 @@ define(['jquery', 'utils'],
       }).fail(function (data) {
         console.log('could not add tracklist');
       });
+    },
+
+    delete: function (self) {
+      $.ajax({
+        url: self.attr('data-url'),
+        type: 'DELETE'
+      }).done(function (data) {
+        document.location.href = '/';
+      }).fail(function (data) {
+        console.log('could not delete tracklist');
+      });
     }
   };
 
