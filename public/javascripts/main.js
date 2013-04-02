@@ -27,9 +27,9 @@ define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'track', 'user'
         navigator.id.logout();
         break;
 
-      case 'tracklist-new':
+      case 'track-delete':
         ev.preventDefault();
-        utils.loadTemplate('tracklist_new.html', {});
+        track.delete(self);
         break;
     }
   });

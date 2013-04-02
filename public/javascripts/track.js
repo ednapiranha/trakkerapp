@@ -14,6 +14,18 @@ define(['jquery'],
       }).fail(function (data) {
         console.log('could not update track');
       });
+    },
+
+    delete: function (self) {
+      $.ajax({
+        url: self.attr('data-url'),
+        type: 'DELETE'
+      }).done(function (data) {
+        self.closest('li').remove();
+        console.log('deleted track');
+      }).fail(function (data) {
+        console.log('could not delete track');
+      });
     }
   };
 

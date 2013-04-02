@@ -1,9 +1,23 @@
-add tracklist
+<h1>Add a new tracklist</h1>
 
-<form method="post" data-action="tracklist-add" data-url="/tracklists">
-  Title <input type="text" name="title" required>
-  Artist <input type="text" name="artist" required>
-  Released <input type="text" name="released">
-  <textarea name="tracks" rows="3" cols="100" required></textarea>
-  <button type="submit">Add</button>
+<form method="post" class="tracklist-new" data-action="tracklist-add" data-url="/tracklists">
+  <label for="title">
+    <span>Title</span>
+    <input type="text" name="title" required>
+  </label>
+  <label for="artist">
+    <span>Artist</span>
+    <input type="text" name="artist" required>
+  </label>
+  <label for="released">
+    <span>Released</span>
+    <input type="text" name="released" placeholder="yyyy-mm-dd">
+  </label>
+  <label for="tracklist">
+    <span class="track-title">Tracks</span>
+    <textarea name="tracks" placeholder="Add tracks" required></textarea>
+  </label>
+  <div class="form-actions">
+    <button type="submit">Add</button>
+  </div>
 </form>

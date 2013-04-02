@@ -48,6 +48,150 @@ table {
 }
 
 body {
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAEsCAYAAACG+vy+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAC99JREFUeNrs3V1oZGcdB+CT72S7m02yH8lmd4Wi9kIoFK8sXvRWvOutBaFSKlQKpYrQXvqBQsHeKVSKXrWXSkFs8U6EQq8URCkqbWnS3TQfzedmN5tknHeSLNmZc05mkplzzsx5HhgC3WSavCe/OTPnP+8vfd99/3+VCAqgv68vemz2QjQ00J/797J6e+kfP/v6Y0/0OywUxfTEaCHCsb64sjgxc/mJWmgdFopgdHggunRhJPfvY2t1/e74lamrD85qDg1566vebk6dq33M092t7f2dja0rDz3tc3jIWzhzhDNInnZ37kd3llefnLx5bVNAKIyhwf7aa4887e/tRRsLy9+Z+tK1DxouHDhE5On65Fjt6lVeKpVKtHpr6ReTN2fejvt3ASE3F88NRRfGhnL9HlY/W/zj1I3pV5P+XUDIxUB/X3StevbINRwLS/+ZvH716bTPERBykffMY2N5dWNi+vJjJ32egJC5R0YGo0vn85t53Fnf3L1waWK8mc8VEDIVXo9fn8rvqdW97buVe2sbN5r9fAEhU1cujEYjQ/nMPMKsY2vxi29M3ry2ICAUzvBgf3T1Yj4zj/39/Wh9YeXluFmHgFAINy6di/IYeYRZx9qtxd9O3Zx+vdWvFRAyMfnIcO3FeR5Wby39dfL69POn+VoBoePynHmsLix/PDl75anTfr2A0HGz1XCEkGRtY2Vta2L60qNnuQ8BoaPOjw5GE9WnV1m7u3Vnf3frzsxZ70dA6JiDmce5zP+/O/d2ou0v1r9S/9Z1AaFQpi+O1i7tZmlvdzfa/HzlW5M3Zj5qx/0JCB0xOjQQXb6Q7cwjzDrWbi2/PHVz5r123aeA0P6nVuGF+dRY5jOPtVtLb51m1iEgZGrq/EjmM49Q0zN5/eoz7b5fAaGtwlvYs95Ce7ymR0AotGsZzzzqa3oEhMIK22fDNtqshFlHfU2PgFBIoXghy30eBzU9a0+2Y9YhIHRcllto02p6BITCGcuwNvSkmh4BoVDCy/EbGdaGnlTTIyAUSpa1oau3l/59Uk2PgFAYWdaG1mp6Zi5/LfOLDw4zp5VVbWgrNT0CQiFkVRvaak2PgJC7rLbQnqamR0DIXRYzj1pNz+crP8hi1iEgtE0WtaEPanpuTP86759XQGhaVrWhZ6npERByk0Vt6FlregSEXGRRG7qxsrb56b2BR4v0cwsITel0behhTc+1ov3cAsKJOl0belTTM1cZ2yzazz7o8JOm0zOPo5qe+croR0X8+Z1BSNXJ2tCjmp5qON4r6s8vICTqdG1oqOmZr4y8XuQ1EBBidbo2NNT0zO0NP1P0dRAQYnWyNjTU9Hy6M/hEN6yDgNCgk7Whoabnk+3+q92yFgLCw0+tos7VhmZR09NuLvPykE7VhtZqelbWH58v4KzDGYSmdKo29KimZ74y+q9uWxNnEB7oRG3oUU1PNRxvd+OaOINQ06na0FDTM78/8mq3rouA0LHa0NXbS/+c2xt+uqvXxq8HndhCG2p6Pt0ZfLzrHzz8epRbJ2pDQ03Px1vReC+sj4CUWCdqQ/Ou6Wk3V7FK7PJ4e2tDj2p65qOxhV5ZI2eQkmr3FtpaTc/Cyveq4figl9ZJQEpqto21oUc1PfOVkd/12joJSAmFPR7trA0NNT1zeyPP9+JaCUjJhEn5TBvfThJqeuZ2h57q1fUSkJJp58yjNusoWE2PgHBq7awNrdX03Nme7fU1E5CSaGdtaJFretrNHKQk2lUbWvSaHmcQWtaumUc31PQICC1rV23o2meLvy96TY+A0JJ21YbWanr2R54t2/oJSA9rV21oN9X0CAhNa0dtaLfV9AgITWlHbWg31vS0m8u8vfioV9tCe7ba0G6t6XEG4URXL46cqTa0m2t6nEFIFTZAnaU2tNtrepxBSBRejl+fPFttaLfX9AgIiUJt6LkzzDx6oaZHQIh11trQXqnpERBinaU2tJdqegSEBmepDe21mp52cxWr2x/hzlAb2os1Pc4gPOS0W2jDW9drs44eq+kREB44bW3oUU3PnFmHgPSqs9SG9nJNj4BQc9ra0F6v6REQTr2Ftgw1PQLCqWpDw1vXzToEpOedpjb0qKbH6rXOHKSL1LbQtvh2krLV9DiDlNjMxFg02MLMo4w1PQJSUqGZZOp8a1toD/8kwetWT0B62mlqQ2s1PWYdAlIGrdaGlrmmR0BKptWZR9lregSkZFqpDVXTIyCl0kptaHjreln+JEGWzEEKqpXa0KOanjmzDgEpi2ZrQ9X0eIpVOq3UhqrpEZByHZAWakMPZh1qegSkRJqtDT2s6THrEJDyaLY2VE2PgJROs7Whanqy5SpWQTRTG6qmxxmklEJtz8xk+lMrNT0CUlonbaFV0yMgpRW2z46fUBuqpkdAyrn4TdSGqukRkNI6qTZUTY+AlNZJtaHbm3f2zDoEpJROqg0NNT13V9e/aqXyZw6Sg7TaUDU9ziCllraFVk2PgJRe0szjaNahpkdASiutNnRtYVlNj4CUV1ptqJoeASm9pNpQNT0CUnpJtaFqegSk9A5qQxu30N5X09MVzEE67Mp4qA19+HEo1PRsqukRkLKrzTzGH35hrqbHUywOxdWGqukREKL42lA1PQJCFF8bur68um7WISBEjbWhoabnk63oopURkNKrrw1V09PdXMVq56NNXW2omh5nEI45XhuqpkdAOOZ4baiaHgHhmPraUDU9AsIxx2tD1fQICMccrw1V0yMg1DnaQqumR0CoM35YG6qmp3eZg5z2kaV61pidGlPT4wxCnJmJ0WigL1LTIyDUC7Whk+eH1fQICPWOakPX1fQICI1CbejO2pqaHgGhXnif1SOV+2p6BITYs8dYf2V3U02PgNBgfHQw6t/a/LKannIxB2lC2B04eu/OC2p6nEGIMVbZ/fPnleHfWAkBoc5QX2V5szLwbSshINTpi6LK/UrfN62EgBCjEkU/rX740EoICI3+W7393DIICPGerd52LIOA0OjN6u1vlgEBabRYvf3YMiAg8V6q3lYsAwLS6C/V21uWAQFptF29vWAZEJB4P4kOLu2CgNT5e/X2K8uAgDTaO3xqZeaBgMR4o3p73zIgII3mIzMPBCTRi9WbHYIISIx3qrc/+BVAQBptRmYeCEiiVw5ff4CA1Al/M9D+cgQkRph5fP/wIwhIndeig6k5CEgdW2gRkBRhn4eZBwISI+zx+JPDjYA0CrsDf+hQIyDxwszjtkONgDQKzSRvOMwISKOwv+M5hxgBiffLSG0oAhLLzAMBSaE2FAFJoDYUAUmgNhQBSaE2FAFJ8G6kNhQBiRXehPiiw4mAxAuXdNWGIiAx1IYiIAnUhiIgKdSGIiAJ1IYiICnUhiIgCdSGIiAJ1IYiICnUhiIgCdSGIiAJ1IYiICnUhiIgCWyhRUBSmHkgIAnCHo93HSoEpFHYHfiSw4SAxAszj0WHCQFppDYUAUmgNhQBSaE2FAFJYOaBgKRQG4qAJFAbioAkUBuKgKRQG4qAJFAbioAkUBuKgKRQG4qAJAgboF5zGBCQRrbQIiApQvnCBw4BAtIo1Pa8YvkRkHi20CIgCdSGIiAJ1IYiICnUhiIgCdSGIiAJzDwQkBRqQxGQBLbQIiApzDzoWoMdvn+1obTsR7NTpTiDqA3FU6wUYX+52lAEJEZoJnnT8iIgjUKn1bOWFgGJF2pDbaFFQGKYeSAgKdSGIiAJ1IYiIAnUhiIgKdSGIiAJ1IYiIAnUhiIgKdSGIiAJ1IYiIAlsoUVAUqgNRUASqA1FQFKE4jdbaBGQGKEy9B3LhoA0MvNAQFKoDUVAEqgNRUASmHkgICnUhiIgCWyhRUBSqA1FQBKoDUVAEv672lBICYjaUEgIiNpQSAiI2lBICYgttJAQkA+jg15dICYgz0VqQyE2IG9EakMhNiDhcq4ttJAQELWhkKCvUqlYBWjiRTogICAgICAgICAgICAgICAgICCAgICAgICAgICAgICAgICAgICAgAACAgICAgICAgICAgICAgICAgICAggICAgICAgICAgICAgICAiUzf8FGAA/AYSlf341LwAAAABJRU5ErkJggg==) no-repeat;
+    background-color: #f1f1f1;
+    font-family: Arial, sans-serif;
+}
+
+#wrapper {
     padding: 20px;
+}
+
+a {
+    color: #0e92ae;
+    text-decoration: none;
+}
+
+a.link, button {
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.link {
+    background-color: #38a0c2;
+    color: #fff;
+}
+
+a.link:hover {
+    background-color: #5bbfe0;
+    text-decoration: none;
+}
+
+header, section, form, label, .form-actions,
+ol {
+    clear: both;
+    float: left;
+}
+
+header {
+    background-color: #fff;
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+header > a {
+    display: inline-block;
+    padding: 20px;
+}
+
+header .actions {
+    float: right;
+    padding: 20px;
+}
+
+h1, h2 {
+    font-size: 35px;
+    margin: 20px 0 10px;
+}
+
+form {
+    margin: 20px 0;
+}
+
+form input, textarea {
+    border: 2px solid #eee;
+    font-size: 16px;
+    margin-bottom: 5px;
+    padding: 3px;
+}
+
+form input:focus, textarea:focus {
+    border: 2px solid #7ad7f5;
+}
+
+form span {
+    display: inline-block;
+    text-align: right;
+    width: 100px;
+}
+
+textarea {
+    font-family: Arial, sans-serif;
+    height: 300px;
+    padding: 5px;
+    resize: vertical;
+    width: 500px;
+}
+
+.time {
+    width: 70px;
+}
+
+.title {
+    width: 380px;
+}
+
+.keywords {
+    width: 300px;
+}
+
+.form-actions {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.track-title {
+    visibility: hidden;
+}
+
+button {
+    background-color: #39b960;
+    border: 0;
+    float: right;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+button.delete {
+    background-color: #b10021;
+}
+
+.tracklist-edit {
+    margin: 20px 0;
+}
+
+.tracklist-edit button {
+    font-size: 15px;
+    margin: 0 5px;
+    padding: 4px 5px;
+}
+
+.tracklist-edit form {
+    margin: 5px 0;
+}
+
+ol.display {
+    display: block;
+    list-style-position: inside;
+    list-style-type: decimal;
+    margin: 20px 0;
+}
+
+ol.display li {
+    margin-bottom: 5px;
 }

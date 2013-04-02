@@ -85,6 +85,16 @@ module.exports = function (app, isLoggedIn, hasProfile) {
     });
   });
 
+  app.get('/tracklists/new', isLoggedIn, hasProfile, function (req, res, next) {
+    if (req.xhr) {
+      res.json({
+        template: 'tracklist_new.html'
+      });
+    } else {
+      res.render('index.html');
+    }
+  });
+
   var displayTracklists = function (action, template, req, res, next) {
     tracklist.get(req, function (err, tl) {
       var owner = (tl.user_id === parseInt(req.session.userId, 10));
@@ -136,6 +146,19 @@ module.exports = function (app, isLoggedIn, hasProfile) {
       } else {
         res.json({
           track: track
+        });
+      }
+    });
+  });
+
+  app.delete('/tracks/:id', function (req, res, next) {
+    track.delete(req, function (err, message) {
+      if (err) {
+        res.status(400);
+        next(err);
+      } else {
+        res.json({
+          message: message
         });
       }
     });

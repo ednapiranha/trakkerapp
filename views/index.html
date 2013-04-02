@@ -16,6 +16,9 @@
   <body>
     <header>
       <a href="/">Trakker</a>
+      {% if session.email %}
+        <a href="/tracklists/new" class="link">Add a new tracklist</a>
+      {% endif %}
       <div class="actions">
         {% if session.email %}
           <a href="javascript:;" data-action="logout">Sign out</a>
@@ -23,8 +26,10 @@
           <a href="javascript:;" data-action="login">Sign in</a>
         {% endif %}
       </div>
-    </head>
-    <section></section>
+    </header>
+    <div id="wrapper">
+      <section></section>
+    </div>
     <footer></footer>
     <script src="https://login.persona.org/include.js"></script>
     {% if debug %}

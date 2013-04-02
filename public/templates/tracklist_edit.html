@@ -1,12 +1,14 @@
 <h1>{{ data.title }}</h1>
-<ol>
+
+<ol class="tracklist-edit">
   {% for track in data.tracks %}
     <li>
       <form method="post" data-action="track-edit" data-url="/tracks/{{ track.id }}">
-        <input type="text" name="startTime" value="{{ track.startTime }}">
-        <input type="text" name="title" value="{{ track.title }}">
-        <input type="text" name="keywords" value="{{ track.keywords }}">
+        <input type="text" name="startTime" class="time" value="{{ track.startTime }}">
+        <input type="text" name="title" class="title" value="{{ track.title }}">
+        <input type="text" name="keywords" class="keywords" placeholder="keywords" value="{{ track.keywords }}">
         <input type="hidden" name="tracklist_id" value="{{ track.tracklist_id }}">
+        <button type="button" class="delete" data-action="track-delete" data-url="/tracks/{{ track.id }}">Delete</button>
         <button type="submit">Update</button>
       </form>
     </li>
