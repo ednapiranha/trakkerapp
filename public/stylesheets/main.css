@@ -48,7 +48,7 @@ table {
 }
 
 body {
-    background-color: #f1f1f1;
+    background-color: #fff;
     font-family: Arial, sans-serif;
 }
 
@@ -98,10 +98,15 @@ ol {
     float: left;
 }
 
+section {
+    width: 100%;
+}
+
 header {
-    background-color: #fff;
+    background-color: #f1f1f1;
     display: block;
     margin-bottom: 20px;
+    position: relative;
     width: 100%;
 }
 
@@ -122,6 +127,7 @@ h1, h2 {
 
 form {
     margin: 20px 0;
+    width: 100%;
 }
 
 form input, textarea {
@@ -150,15 +156,18 @@ textarea {
 }
 
 .time {
-    width: 70px;
+    min-width: 70px;
+    width: 10%;
 }
 
 .title {
-    width: 380px;
+    min-width: 270px;
+    width: 45%;
 }
 
 .keywords {
-    width: 300px;
+    min-width: 270px;
+    width: 25%;
 }
 
 .form-actions {
@@ -173,13 +182,22 @@ textarea {
 button {
     background-color: #39b960;
     border: 0;
+    cursor: pointer;
     float: right;
     font-size: 20px;
     margin: 20px 0;
 }
 
-button.delete {
+button:hover {
+    background-color: #56e281;
+}
+
+.delete, .link.delete {
     background-color: #b10021;
+}
+
+.delete:hover, .link.delete:hover {
+    background-color: #ed2d51;
 }
 
 .tracklist-edit {
@@ -187,6 +205,7 @@ button.delete {
 }
 
 .tracklist-edit button {
+    float: left;
     font-size: 15px;
     margin: 0 5px;
     padding: 4px 5px;
@@ -207,13 +226,17 @@ ol.display {
     margin: 20px 0;
 }
 
+li {
+   line-height: 25px;
+}
+
 ol.display li {
-    line-height: 30px;
-    margin-bottom: 5px;
+    border-bottom: 1px dotted #f1f1f1;
+    margin-bottom: 7px;
+    padding-bottom: 5px;
 }
 
 ul.summary li {
-    line-height: 30px;
     margin-bottom: 10px;
 }
 
@@ -222,7 +245,26 @@ ul.summary li a {
 }
 
 span.keywords {
-    background-color: #fff;
+    background-color: #fffd6f;
+    color: #3f3f17;
+    display: block;
+    font-size: 14px;
+    line-height: 17px;
     margin-left: 10px;
-    padding: 5px 10px;
+    padding: 3px 8px;
+}
+
+#notification {
+    background-color: #222;
+    bottom: 0;
+    color: #fff;
+    font-size: 20px;
+    padding: 8px 20px;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+}
+
+.hidden {
+    display: none;
 }

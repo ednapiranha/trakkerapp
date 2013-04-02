@@ -1,9 +1,19 @@
 <h1>Profile</h1>
 
+<h2>email: {{ data.user.email }}</h2>
+
+<h2>Total tracklists added: {{ data.tracklistTotal }}</h2>
+
 <form method="post" data-action="profile-edit" data-url="/me">
-  <h2>email: {{ data.email }}</h2>
-  <img src="{{ data.gravatar }}">
-  username: <input type="text" name="username" value="{{ data.username }}">
-  location: <input type="text" name="location" value="{{ data.location }}">
-  <button type="submit">Update</button>
+  <label for="username">
+    <span>Username</span>
+    <input type="text" name="username" value="{{ data.user.username }}">
+  </label>
+  <label for="location">
+    <span>Location</span>
+    <input type="text" name="location" value="{{ data.user.location }}">
+  </label>
+  <div class="form-actions">
+    <button type="submit">Update</button>
+  </div>
 </form>

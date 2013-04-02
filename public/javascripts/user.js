@@ -33,8 +33,8 @@ define(['jquery', 'utils'],
         data: form.serialize(),
         dataType: 'json'
       }).done(function (data) {
-        console.log('retrieved profile');
-
+        console.log('updated profile');
+        utils.showNotification('updated!');
       }).fail(function (data) {
         console.log('could not update profile');
 

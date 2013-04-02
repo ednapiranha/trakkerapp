@@ -6,26 +6,26 @@ module.exports = function (app, isLoggedIn, hasProfile) {
   var track = require('../lib/track');
 
   app.get('/', function (req, res, next) {
-    user.loadProfile(req, function (err, u) {
-      var username = null;
-
-      if (u) {
-        req.session.userId = u.id;
-        req.session.username = u.username;
-      }
-
+    if (!req.session.email) {
       if (req.xhr) {
-        if (req.session.email) {
-          res.render('index.html');
-        } else {
-          res.json({
-            template: 'home.html'
-          });
-        }
+        res.json({
+          template: 'home.html'
+        });
       } else {
         res.render('index.html');
       }
-    });
+    } else {
+      user.loadProfile(req, function (err, u) {
+        if (u) {
+          req.session.userId = u.id;
+          req.session.username = u.username;
+
+          res.redirect('/dashboard');
+        } else {
+          res.redirect('/me');
+        }
+      });
+    }
   });
 
   app.get('/global', function (req, res) {
@@ -41,25 +41,61 @@ module.exports = function (app, isLoggedIn, hasProfile) {
     });
   });
 
+  app.get('/dashboard', isLoggedIn, hasProfile, function (req, res, next) {
+    tracklist.getMine(req, function (err, tracklists) {
+      if (err) {
+        res.status(400);
+        next(err);
+      } else {
+        if (req.xhr) {
+          res.json({
+            template: 'dashboard.html',
+            data: tracklists
+          });
+        } else {
+          res.render('index.html');
+        }
+      }
+    });
+  });
+
   app.get('/me', isLoggedIn, function (req, res, next) {
     user.loadProfile(req, function (err, u) {
       if (err) {
-        res.status(404);
-        next();
+        if (req.xhr) {
+          res.json({
+            template: 'profile.html',
+            tracklistTotal: 0,
+            user: {
+              email: req.session.email,
+              username: null,
+              location: null
+            }
+          });
+        } else {
+          res.status(404);
+          next(err);
+        }
       } else {
-        req.session.userId = u.id;
-        req.session.username = u.username;
-        tracklist.getMine(req, function (err, tracklists) {
-          if (err) {
+        if (req.xhr) {
+          var tracklistCount = 0;
+
+          u.getTracklists().success(function (err, tracklists) {
+            if (tracklists) {
+              tracklistCount = tracklists;
+            }
+            res.json({
+              template: 'profile.html',
+              tracklistTotal: tracklistCount,
+              user: u
+            });
+          }).error(function (err) {
             res.status(400);
             next(err);
-          } else {
-            res.json({
-              template: 'dashboard.html',
-              data: tracklists
-            });
-          }
-        });
+          });
+        } else {
+          res.render('index.html');
+        }
       }
     });
   });

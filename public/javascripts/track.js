@@ -1,5 +1,5 @@
-define(['jquery'],
-  function ($) {
+define(['jquery', 'utils'],
+  function ($, utils) {
   'use strict';
 
   var self = {
@@ -11,6 +11,7 @@ define(['jquery'],
         dataType: 'json'
       }).done(function (data) {
         console.log('updated track');
+        utils.showNotification('updated!');
       }).fail(function (data) {
         console.log('could not update track');
       });
@@ -23,6 +24,7 @@ define(['jquery'],
       }).done(function (data) {
         self.closest('li').remove();
         console.log('deleted track');
+        utils.showNotification('deleted!');
       }).fail(function (data) {
         console.log('could not delete track');
       });
