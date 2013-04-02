@@ -80,9 +80,9 @@ module.exports = function (app, isLoggedIn, hasProfile) {
         if (req.xhr) {
           var tracklistCount = 0;
 
-          u.getTracklists().success(function (err, tracklists) {
+          u.getTracklists().success(function (tracklists) {
             if (tracklists) {
-              tracklistCount = tracklists;
+              tracklistCount = tracklists.length;
             }
             res.json({
               template: 'profile.html',

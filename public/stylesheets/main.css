@@ -120,6 +120,10 @@ header .actions {
     padding: 20px;
 }
 
+header .actions a {
+    padding: 20px;
+}
+
 h1, h2 {
     font-size: 35px;
     margin: 20px 0 15px;

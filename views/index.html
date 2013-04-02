@@ -21,10 +21,11 @@
         <a href="/tracklists/new" class="link">Add a new tracklist</a>
       {% endif %}
       <div class="actions">
+        <a href="/me" class="hidden profile">Profile</a>
         {% if session.email %}
-          <a href="javascript:;" data-action="logout">Sign out</a>
+          <a href="javascript:;" data-action="logout" class="authenticate">Sign out</a>
         {% else %}
-          <a href="javascript:;" data-action="login">Sign in</a>
+          <a href="javascript:;" data-action="login" class="authenticate">Sign in</a>
         {% endif %}
       </div>
     </header>
