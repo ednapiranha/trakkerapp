@@ -204,6 +204,7 @@ ol.display {
 }
 
 ol.display li {
+    line-height: 20px;
     margin-bottom: 5px;
 }
 
