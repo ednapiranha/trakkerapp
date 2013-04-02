@@ -28,6 +28,19 @@ module.exports = function (app, isLoggedIn, hasProfile) {
     });
   });
 
+  app.get('/global', function (req, res) {
+    tracklist.global(function (err, tracklists) {
+      if (req.xhr) {
+        res.json({
+          template: 'global.html',
+          data: tracklists
+        });
+      } else {
+        res.render('index.html');
+      }
+    });
+  });
+
   app.get('/me', isLoggedIn, function (req, res, next) {
     user.loadProfile(req, function (err, u) {
       if (err) {

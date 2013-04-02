@@ -1,0 +1,9 @@
+{% macro tracklists(data) %}
+  <ul class="summary">
+    {% for tracklist in data %}
+      <li>
+        <a href="/tracklists/{{ tracklist.id }}">{{ tracklist.artist }} - {{ tracklist.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}

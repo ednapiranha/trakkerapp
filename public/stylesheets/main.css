@@ -106,7 +106,7 @@ header .actions {
 
 h1, h2 {
     font-size: 35px;
-    margin: 20px 0 10px;
+    margin: 20px 0 15px;
 }
 
 form {
@@ -194,4 +194,12 @@ ol.display {
 
 ol.display li {
     margin-bottom: 5px;
+}
+
+ul.summary li {
+    margin-bottom: 10px;
+}
+
+ul.summary li a {
+    font-size: 16px;
 }
