@@ -196,6 +196,10 @@ button.delete {
     margin: 5px 0;
 }
 
+ol, ul {
+    width: 100%;
+}
+
 ol.display {
     display: block;
     list-style-position: inside;
