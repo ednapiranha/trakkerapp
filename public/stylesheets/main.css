@@ -204,12 +204,12 @@ ol.display {
 }
 
 ol.display li {
-    line-height: 20px;
+    line-height: 30px;
     margin-bottom: 5px;
 }
 
 ul.summary li {
-    line-height: 20px;
+    line-height: 30px;
     margin-bottom: 10px;
 }
 
