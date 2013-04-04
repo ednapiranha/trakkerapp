@@ -98,7 +98,7 @@ ol {
     float: left;
 }
 
-section {
+section, label {
     width: 100%;
 }
 
@@ -145,6 +145,11 @@ form input:focus, textarea:focus {
     border: 2px solid #7ad7f5;
 }
 
+.tracklist-edit form input {
+    float: left;
+    margin-right: 5px;
+}
+
 form span {
     display: inline-block;
     text-align: right;
@@ -154,9 +159,11 @@ form span {
 textarea {
     font-family: Arial, sans-serif;
     height: 300px;
+    max-width: 700px;
+    min-width: 280px;
     padding: 5px;
     resize: vertical;
-    width: 500px;
+    width: 95%;
 }
 
 .time {
@@ -217,6 +224,11 @@ button:hover {
 
 .tracklist-edit form {
     margin: 5px 0;
+}
+
+.tracklist-new {
+    max-width: 820px;
+    width: 100%;
 }
 
 ol, ul {
