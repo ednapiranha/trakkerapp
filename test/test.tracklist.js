@@ -55,6 +55,17 @@ describe('tracklist', function () {
       });
     });
 
+    it('does not add a tracklist', function (done) {
+      req.body.tracks = null;
+
+      tracklist.add(req, function (err, t) {
+        console.log(err, t)
+        should.exist(err);
+        err.toString().should.equal('Error: Invalid tracklist format');
+        done();
+      });
+    });
+
     it('gets the global tracklists', function (done) {
       tracklist.global(function (err, t) {
         should.exist(t);
