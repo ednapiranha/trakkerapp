@@ -187,6 +187,19 @@ module.exports = function (app, isLoggedIn, hasProfile) {
     displayTracklists('edit', 'tracklist_edit.html', req, res, next);
   });
 
+  app.put('/tracklists/:id', isLoggedIn, hasProfile, function (req, res, next) {
+    tracklist.update(req, function (err, tl) {
+      if (err) {
+        res.status(400);
+        next(err);
+      } else {
+        res.json({
+          tracklist: tl
+        });
+      }
+    });
+  });
+
   app.delete('/tracklists/:id', function (req, res, next) {
     tracklist.delete(req, function (err, message) {
       if (err) {

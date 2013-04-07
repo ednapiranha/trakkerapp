@@ -57,6 +57,11 @@ define(['jquery', 'authenticate', 'local_settings', 'tracklist', 'track', 'user'
         ev.preventDefault();
         user.update(self);
         break;
+
+      case 'tracklist-edit':
+        ev.preventDefault();
+        tracklist.update(self);
+        break;
     }
   });
 });
