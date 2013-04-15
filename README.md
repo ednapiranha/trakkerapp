@@ -12,6 +12,8 @@ Install node by using brew or through the website http://nodejs.org/#download
 
 > cd trakkerapp
 
+> cp public/javascripts/local_settings.js-dist public/javascripts/local_settings.js
+
 > cp local.json-dist local.json
 
 > npm install
@@ -35,6 +37,7 @@ If you are on production and have precompiled your templates, use [nunjucks-min.
 ## Precompiling templates for nunjucks
 
 In development mode, make sure detour/static/js/templates.js only has the following:
+
     define(function() {});
 
 In production mode, run the following:
@@ -47,7 +50,7 @@ In production mode, run the following:
 
 ## Configure client-side settings
 
-If you need to override detour/static/js/settings.js, create detour/static/js/local_settings.js and return the new values. For example:
+If you need to override detour/static/js/settings.js, edit detour/static/js/local_settings.js and return the new values. For example:
 
     define([],
       function () {
