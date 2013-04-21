@@ -24,10 +24,6 @@ This will allow you to compile your templates for production
 
 To read more about nunjucks, check out the [documentation](http://nunjucks.jlongster.com)
 
-Install [node](http://nodejs.org)
-
-> npm install
-
 Download nunjucks and add it to trakkerapp/public/javascripts/lib/nunjucks.js
 
 If you are on development mode, use [nunjucks-dev.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks-dev.js)
