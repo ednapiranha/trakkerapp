@@ -166,6 +166,22 @@ module.exports = function (app, isLoggedIn, hasProfile) {
     }
   });
 
+  var dateFormat = function (date) {
+    var month = date.getMonth() + 1;
+
+    if (parseInt(month, 10) < 10) {
+      month = '0' + month;
+    }
+
+    var day = date.getDate() + 1;
+
+    if (parseInt(day, 10) < 10) {
+      day = '0' + day;
+    }
+
+    return date.getFullYear() + '-' + month + '-' + day;
+  };
+
   var displayTracklists = function (action, template, req, res, next) {
     tracklist.get(req, function (err, tl) {
       if (err) {
@@ -186,6 +202,7 @@ module.exports = function (app, isLoggedIn, hasProfile) {
                   id: tl.id,
                   title: tl.title,
                   artist: tl.artist,
+                  released: dateFormat(tl.released),
                   download: tl.download,
                   tracks: tr
                 }
