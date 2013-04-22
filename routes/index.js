@@ -115,6 +115,23 @@ module.exports = function (app, isLoggedIn, hasProfile) {
     });
   });
 
+  app.post('/search', function (req, res, next) {
+    track.search(req, function (err, data) {
+      if (err) {
+        res.status(400);
+        next(err);
+      } else {
+        res.json({
+          template: 'search.html',
+          data: {
+            keyword: data.keyword,
+            tracks: data.tracks
+          }
+        });
+      }
+    });
+  });
+
   app.post('/tracklists', isLoggedIn, hasProfile, function (req, res, next) {
     tracklist.add(req, function (err, data) {
       if (err) {

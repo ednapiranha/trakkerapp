@@ -110,6 +110,11 @@ define(['jquery', 'local_settings', 'tracklist', 'track', 'user', 'utils', 'nunj
         ev.preventDefault();
         tracklist.update(self);
         break;
+
+      case 'search':
+        ev.preventDefault();
+        track.search(self);
+        break;
     }
   });
 });

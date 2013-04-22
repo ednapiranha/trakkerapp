@@ -284,3 +284,15 @@ span.keywords {
 .hidden {
     display: none;
 }
+
+.search-form input {
+    width: 97%;
+}
+
+.search-form button {
+    display: block;
+    left: -9999px;
+    padding: 0;
+    position: absolute;
+    font-size: 1px;
+}
