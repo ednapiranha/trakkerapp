@@ -1,0 +1,16 @@
+<h1>Search results for: {{ data.keyword }}</h1>
+
+{% if data.tracks.length < 1 %}
+  <p>No tracks found.</p>
+{% else %}
+  <ol class="display">
+    {% for track in data.tracks %}
+      <li>
+        <a href="/tracklists/{{ track.tracklist_id }}">
+          <span>{{ track.tracklist.artist }}</span>
+          <span>{{ track.title }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ol>
+{% endif %}
