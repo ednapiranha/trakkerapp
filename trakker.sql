@@ -1,3 +1,16 @@
+# ************************************************************
+# Sequel Pro SQL dump
+# Version 4004
+#
+# http://www.sequelpro.com/
+# http://code.google.com/p/sequel-pro/
+#
+# Host: 50.116.18.155 (MySQL 5.1.67-0ubuntu0.10.04.1)
+# Database: trakker
+# Generation Time: 2013-04-22 16:41:25 +0000
+# ************************************************************
+
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -10,8 +23,6 @@
 # Dump of table tracklists
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `tracklists`;
-
 CREATE TABLE `tracklists` (
   `artist` varchar(255) NOT NULL DEFAULT 'Unknown',
   `title` varchar(255) NOT NULL DEFAULT 'Untitled',
@@ -20,6 +31,7 @@ CREATE TABLE `tracklists` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `download` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `tracklists_user_id` (`user_id`),
   CONSTRAINT `tracklists_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -29,8 +41,6 @@ CREATE TABLE `tracklists` (
 
 # Dump of table tracks
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tracks`;
 
 CREATE TABLE `tracks` (
   `title` varchar(255) NOT NULL DEFAULT 'Untitled',
@@ -50,8 +60,6 @@ CREATE TABLE `tracks` (
 
 # Dump of table users
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,

@@ -64,4 +64,4 @@ If you need to override detour/static/js/settings.js, edit detour/static/js/loca
 
 ## Tests
 
-> make test
+> NODE_ENV=test make test

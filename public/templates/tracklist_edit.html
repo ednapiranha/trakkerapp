@@ -9,6 +9,14 @@
     <span>Title</span>
     <input type="text" name="title" value="{{ data.title }}" required>
   </label>
+  <label for="released">
+    <span>Released</span>
+    <input type="text" name="released" value="{{ data.released }}" placeholder="yyyy-mm-dd">
+  </label>
+  <label for="download">
+    <span>Download</span>
+    <input type="text" name="download" value="{{ data.download }}">
+  </label>
   <div class="form-actions">
     <button type="submit">Update</button>
   </div>

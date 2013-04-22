@@ -6,7 +6,7 @@ module.exports = function (app, isLoggedIn, hasProfile) {
   var track = require('../lib/track');
 
   app.get('/', function (req, res, next) {
-    if (!req.session.email) {
+    if (!req.session.username) {
       if (req.xhr) {
         res.json({
           template: 'home.html'
@@ -26,6 +26,11 @@ module.exports = function (app, isLoggedIn, hasProfile) {
         }
       });
     }
+  });
+
+  app.get('/logout', function (req, res) {
+    req.session.reset();
+    res.redirect('/');
   });
 
   app.get('/global', function (req, res) {
@@ -181,6 +186,7 @@ module.exports = function (app, isLoggedIn, hasProfile) {
                   id: tl.id,
                   title: tl.title,
                   artist: tl.artist,
+                  download: tl.download,
                   tracks: tr
                 }
               });

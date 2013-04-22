@@ -1,5 +1,9 @@
 <h1>{{ data.artist }} - {{ data.title }}</h1>
 
+{% if data.download %}
+  <p>Download link: <a href="{{ data.download }}">{{ data.download }}</a></p>
+{% endif %}
+
 {% if data.authenticated and data.owner %}
   <div class="form-actions">
     <a href="/tracklists/{{ data.id }}/edit" class="link">edit</a>
