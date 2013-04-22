@@ -170,7 +170,7 @@ module.exports = function (app, isLoggedIn, hasProfile) {
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
 
-    if (parseInt(year, 10) < 1900) {
+    if (isNaN(parseInt(year, 10))) {
       return '';
     }
 
