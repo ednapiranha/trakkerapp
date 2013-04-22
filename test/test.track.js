@@ -73,6 +73,26 @@ describe('track', function () {
       });
     });
 
+    it('searches for a valid track', function (done) {
+      req.body.keyword = 'some track';
+
+      track.search(req, function (err, t) {
+        should.exist(t.tracks);
+        t.tracks[0].title.should.equal('some track');
+        done();
+      });
+    });
+
+    it('searches for an invalid track', function (done) {
+      req.body.keyword = 'invalid';
+
+      track.search(req, function (err, t) {
+        should.exist(t.tracks);
+        t.tracks.length.should.equal(0);
+        done();
+      });
+    });
+
     it('updates a track', function (done) {
       req.body.title = 'new title';
       req.params.id = currTrack.id;
