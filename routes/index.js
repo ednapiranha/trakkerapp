@@ -167,7 +167,12 @@ module.exports = function (app, isLoggedIn, hasProfile) {
   });
 
   var dateFormat = function (date) {
+    var year = date.getFullYear();
     var month = date.getMonth() + 1;
+
+    if (parseInt(year, 10) < 1900) {
+      return '';
+    }
 
     if (parseInt(month, 10) < 10) {
       month = '0' + month;
@@ -179,7 +184,7 @@ module.exports = function (app, isLoggedIn, hasProfile) {
       day = '0' + day;
     }
 
-    return date.getFullYear() + '-' + month + '-' + day;
+    return year + '-' + month + '-' + day;
   };
 
   var displayTracklists = function (action, template, req, res, next) {
