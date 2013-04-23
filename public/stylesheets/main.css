@@ -47,12 +47,19 @@ table {
     border-spacing: 0;
 }
 
+html, body {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
 body {
     background-color: #fff;
     font-family: Arial, sans-serif;
 }
 
 #wrapper {
+    min-height: 78%;
     padding: 20px;
 }
 
@@ -297,7 +304,7 @@ span.keywords {
     color: #fff;
     font-size: 20px;
     padding: 8px 20px;
-    position: absolute;
+    position: fixed;
     right: 0;
     z-index: 2;
 }
@@ -326,4 +333,15 @@ span.keywords {
     padding: 0;
     position: absolute;
     font-size: 1px;
+}
+
+footer {
+    background-color: #eee;
+    float: left;
+    margin-top: 40px;
+    width: 100%;
+}
+
+footer .content {
+    padding: 20px;
 }
