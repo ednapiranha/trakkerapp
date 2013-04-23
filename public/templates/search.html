@@ -7,7 +7,7 @@
     {% for track in data.tracks %}
       <li>
         <a href="/tracklists/{{ track.tracklist_id }}">
-          <span>{{ track.tracklist.artist }}</span>
+          <span>[{{ track.tracklist.artist }} - {{ track.tracklist.title }}]</span>
           <span>{{ track.title }}</span>
         </a>
       </li>

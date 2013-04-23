@@ -112,7 +112,11 @@ header {
 
 header > a {
     display: inline-block;
-    padding: 20px;
+    padding: 20px 10px 10px;
+}
+
+header > a:first-child {
+    padding-left: 20px;
 }
 
 header .actions {
@@ -121,7 +125,11 @@ header .actions {
 }
 
 header .actions a {
-    padding: 20px;
+    padding: 20px 10px 10px;
+}
+
+header .link {
+    padding: 5px 10px;
 }
 
 h1, h2 {
@@ -285,8 +293,18 @@ span.keywords {
     display: none;
 }
 
+.search-form {
+    margin-top: 0px;
+}
+
 .search-form input {
-    width: 97%;
+    font-size: 25px;
+    padding: 5px;
+    width: 96.5%;
+}
+
+.search-form input:focus {
+    background-color: #d4f9ff;
 }
 
 .search-form button {
