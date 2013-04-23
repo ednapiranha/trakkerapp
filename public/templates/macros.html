@@ -7,3 +7,10 @@
     {% endfor %}
   </ul>
 {% endmacro %}
+
+{% macro search() %}
+  <form method="post" class="search-form" data-action="search" data-url="/search">
+    <input type="text" name="keyword" placeholder="Search for a track">
+    <button type="submit">Search</button>
+  </form>
+{% endmacro %}

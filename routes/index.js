@@ -147,6 +147,8 @@ module.exports = function (app, isLoggedIn, hasProfile) {
           template: 'tracklist.html',
           data: {
             id: data.id,
+            authenticated: true,
+            owner: true,
             title: data.title,
             artist: data.artist,
             tracks: data.tracks

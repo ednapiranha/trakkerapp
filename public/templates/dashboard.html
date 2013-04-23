@@ -1,5 +1,9 @@
 {% include 'macros.html' %}
 
+{% block search %}
+  {{ search() }}
+{% endblock %}
+
 <h1>Your Tracklists</h1>
 
 {{ tracklists(data) }}

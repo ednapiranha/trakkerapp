@@ -1,3 +1,7 @@
+{% include 'macros.html' %}
+
+{{ search() }}
+
 <h1>Search results for: {{ data.keyword }}</h1>
 
 {% if data.tracks.length < 1 %}

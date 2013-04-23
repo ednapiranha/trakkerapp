@@ -158,10 +158,23 @@ form input:focus, textarea:focus {
     margin-right: 5px;
 }
 
+.tracklist-edit-form button {
+    float: left;
+}
+
+.tracklist-edit-form .form-actions {
+    margin: 0;
+}
+
 form span {
     display: inline-block;
     text-align: right;
     width: 100px;
+}
+
+.track-edit-actions {
+    float: left;
+    width: 150px;
 }
 
 textarea {

@@ -1,6 +1,7 @@
 <h1><a href="/tracklists/{{ data.id }}">{{ data.artist }} - {{ data.title }}</a></h1>
 
-<form method="post" data-action="tracklist-edit" data-url="/tracklists/{{ data.id }}">
+<form method="post" data-action="tracklist-edit" class="tracklist-edit-form"
+      data-url="/tracklists/{{ data.id }}">
   <label for="artist">
     <span>Artist</span>
     <input type="text" name="artist" value="{{ data.artist }}" required>
@@ -30,8 +31,10 @@
         <input type="text" name="title" class="title" value="{{ track.title }}">
         <input type="text" name="keywords" class="keywords" placeholder="keywords" value="{{ track.keywords }}">
         <input type="hidden" name="tracklist_id" value="{{ track.tracklist_id }}">
-        <button type="button" class="delete" data-action="track-delete" data-url="/tracks/{{ track.id }}">Delete</button>
-        <button type="submit">Update</button>
+        <div class="track-edit-actions">
+          <button type="button" class="delete" data-action="track-delete" data-url="/tracks/{{ track.id }}">Delete</button>
+          <button type="submit">Update</button>
+        </div>
       </form>
     </li>
   {% endfor %}
