@@ -17,7 +17,7 @@ CREATE TABLE `tracklists` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
   `download` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `tracklists_user_id` (`user_id`),
@@ -37,7 +37,7 @@ CREATE TABLE `tracks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `tracklist_id` int(11) DEFAULT NULL,
+  `tracklist_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tracks_tracklist_id` (`tracklist_id`),
   CONSTRAINT `tracks_tracklist_id` FOREIGN KEY (`tracklist_id`) REFERENCES `tracklists` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
