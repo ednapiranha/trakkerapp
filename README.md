@@ -24,15 +24,15 @@ This will allow you to compile your templates for production
 
 To read more about nunjucks, check out the [documentation](http://nunjucks.jlongster.com)
 
-Download nunjucks and add it to trakkerapp/public/javascripts/lib/nunjucks.js
+Download nunjucks and add it to `trakkerapp/public/javascripts/lib/nunjucks.js`
 
 If you are on development mode, use [nunjucks-dev.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks-dev.js)
 
-If you are on production and have precompiled your templates, use [nunjucks-min.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks-min.js)
+If you are on production and have precompiled your templates, use [nunjucks.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks.js)
 
 ## Precompiling templates for nunjucks
 
-In development mode, make sure detour/static/js/templates.js only has the following:
+In development mode, make sure `trakkerapp/static/js/templates.js` only has the following:
 
     define(function() {});
 
@@ -43,20 +43,6 @@ In production mode, run the following:
 ## Minifying files with Grunt
 
 > node_modules/grunt-cli/bin/grunt
-
-## Configure client-side settings
-
-If you need to override detour/static/js/settings.js, edit detour/static/js/local_settings.js and return the new values. For example:
-
-    define([],
-      function () {
-
-      'use strict';
-
-      return {
-        DEBUG: true
-      };
-    });
 
 ## Run the site
 
