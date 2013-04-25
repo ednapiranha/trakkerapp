@@ -16,10 +16,10 @@ var currUserId;
 
 var req = {
   session: {
-    email: 'test@test.com'
+    email: 'test@test3.com'
   },
   body: {
-    username: 'test',
+    username: 'test3',
     location: ''
   },
   params: {

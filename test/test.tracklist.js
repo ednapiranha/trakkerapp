@@ -13,7 +13,7 @@ var currUserId;
 
 var req = {
   session: {
-    email: 'test2@test.com'
+    email: 'test@test2.com'
   },
   body: {
     username: 'test2',
@@ -59,7 +59,6 @@ describe('tracklist', function () {
       req.body.tracks = null;
 
       tracklist.add(req, function (err, t) {
-        console.log(err, t)
         should.exist(err);
         err.toString().should.equal('Error: Invalid tracklist format');
         done();
