@@ -81,6 +81,16 @@ describe('tracklist', function () {
       });
     });
 
+    it('does not get a tracklist', function (done) {
+      req.params.id = -1;
+
+      tracklist.get(req, function (err, t) {
+        should.exist(err);
+        err.toString().should.equal('Error: Invalid tracklist');
+        done();
+      });
+    });
+
     it("gets a user's tracklist", function (done) {
       req.params.id = currTracklist.id;
 

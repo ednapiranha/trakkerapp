@@ -60,5 +60,22 @@ describe('user', function () {
         done();
       });
     });
+
+    it('does not load a user', function (done) {
+      req.session.email = 'doesnot@exist.com';
+      user.loadProfile(req, function (err, u) {
+        should.exist(err);
+        err.toString().should.equal('Error: User not found');
+        done();
+      });
+    });
+
+    it('does not get a user', function (done) {
+      user.get(-1, function (err, u) {
+        should.exist(err);
+        err.toString().should.equal('Error: User not found');
+        done();
+      });
+    });
   });
 });

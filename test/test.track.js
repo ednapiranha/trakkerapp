@@ -73,6 +73,16 @@ describe('track', function () {
       });
     });
 
+    it('does not get a track', function (done) {
+      req.params.id = -1;
+
+      track.get(req, function (err, t) {
+        should.exist(err);
+        err.toString().should.equal('Error: Invalid track');
+        done();
+      });
+    });
+
     it('searches for a valid track', function (done) {
       req.body.keyword = 'some track';
 
