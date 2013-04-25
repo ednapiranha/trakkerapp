@@ -30,7 +30,11 @@ module.exports = function (app, isLoggedIn, hasProfile) {
 
   app.get('/logout', function (req, res) {
     req.session.reset();
-    res.redirect('/');
+    if (req.xhr) {
+      res.json({ message: 'logged out' });
+    } else {
+      res.redirect('/');
+    }
   });
 
   app.get('/global', function (req, res) {
@@ -111,6 +115,7 @@ module.exports = function (app, isLoggedIn, hasProfile) {
         res.status(400);
         next(err);
       } else {
+        req.session.userId = u.id;
         req.session.username = u.username;
         res.json({
           template: 'profile.html',

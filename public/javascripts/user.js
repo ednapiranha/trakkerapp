@@ -22,7 +22,11 @@ define(['jquery', 'utils'],
         }
       }).fail(function (data) {
         console.log('could not retrieve profile');
-        utils.loadTemplate('profile.html', data);
+        if (localStorage.getItem('personaEmail')) {
+          utils.loadTemplate('profile.html', data);
+        } else {
+          utils.loadTemplate('home.html', {});
+        }
       });
     },
 
@@ -37,7 +41,6 @@ define(['jquery', 'utils'],
         utils.showNotification('updated!');
       }).fail(function (data) {
         console.log('could not update profile');
-
       });
     }
   };

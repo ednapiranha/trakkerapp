@@ -26,7 +26,7 @@ define(['jquery', 'local_settings', 'tracklist', 'track', 'user', 'utils', 'nunj
         data: { assertion: assertion },
         success: function (res, status, xhr) {
           localStorage.setItem('personaEmail', res.email);
-          body.find('header .actions a.profile').removeClass('hidden');
+          body.find('header .actions a.profile, header .link').removeClass('hidden');
           body.find('header .actions a.authenticate').data('action', 'logout')
                                                      .text('Sign out');
           user.get();
@@ -46,11 +46,13 @@ define(['jquery', 'local_settings', 'tracklist', 'track', 'user', 'utils', 'nunj
         url: '/persona/logout',
         type: 'POST',
         success: function(res, status, xhr) {
-          localStorage.removeItem('personaEmail');
-          body.find('header .actions a.profile').addClass('hidden');
-          body.find('header .actions a').data('action', 'login')
-                                        .text('Sign in');
-          user.get();
+          $.get('/logout', function () {
+            localStorage.removeItem('personaEmail');
+            body.find('header .actions a.profile, header .link').addClass('hidden');
+            body.find('header .actions a').data('action', 'login')
+                                          .text('Sign in');
+            user.get();
+          });
         },
         error: function(res, status, xhr) {
           console.log('logout failure ', res);
