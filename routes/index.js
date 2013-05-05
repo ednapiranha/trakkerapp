@@ -86,6 +86,7 @@ module.exports = function (app, isLoggedIn, hasProfile) {
           next(err);
         }
       } else {
+        req.session.username = u.username;
         if (req.xhr) {
           var tracklistCount = 0;
 
