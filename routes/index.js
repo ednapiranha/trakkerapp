@@ -253,8 +253,8 @@ module.exports = function (app, isLoggedIn, hasProfile) {
     });
   });
 
-  app.delete('/tracklists/:id', function (req, res, next) {
-    tracklist.delete(req, function (err, message) {
+  app.del('/tracklists/:id', function (req, res, next) {
+    tracklist.del(req, function (err, message) {
       if (err) {
         res.status(400);
         next(err);
@@ -279,8 +279,8 @@ module.exports = function (app, isLoggedIn, hasProfile) {
     });
   });
 
-  app.delete('/tracks/:id', function (req, res, next) {
-    track.delete(req, function (err, message) {
+  app.del('/tracks/:id', function (req, res, next) {
+    track.del(req, function (err, message) {
       if (err) {
         res.status(400);
         next(err);
