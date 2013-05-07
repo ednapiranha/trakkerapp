@@ -79,12 +79,12 @@ define(['jquery', 'local_settings', 'tracklist', 'track', 'user', 'utils', 'nunj
 
       case 'tracklist-delete':
         ev.preventDefault();
-        tracklist.delete(self);
+        tracklist.del(self);
         break;
 
       case 'track-delete':
         ev.preventDefault();
-        track.delete(self);
+        track.del(self);
         break;
     }
   });

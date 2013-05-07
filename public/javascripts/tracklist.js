@@ -34,7 +34,7 @@ define(['jquery', 'utils'],
       });
     },
 
-    delete: function (self) {
+    del: function (self) {
       $.ajax({
         url: self.attr('data-url'),
         type: 'DELETE'

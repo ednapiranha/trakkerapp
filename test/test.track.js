@@ -138,7 +138,7 @@ describe('track', function () {
     it('does not delete a track', function (done) {
       req.params.id = currTrack.id;
 
-      track.delete(req, function (err, t) {
+      track.del(req, function (err, t) {
         should.exist(err);
         err.toString().should.equal('Error: User has no permission to delete this track');
         done();
@@ -149,7 +149,7 @@ describe('track', function () {
       req.params.id = currTrack.id;
       req.session.userId = currUserId;
 
-      track.delete(req, function (err, t) {
+      track.del(req, function (err, t) {
         should.exist(t);
         done();
       });

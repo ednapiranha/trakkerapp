@@ -125,7 +125,7 @@ describe('tracklist', function () {
     it('does not delete a tracklist', function (done) {
       req.params.id = currTracklist.id;
 
-      tracklist.delete(req, function (err, t) {
+      tracklist.del(req, function (err, t) {
         should.exist(err);
         err.toString().should.equal('Error: User has no permission to delete tracklist');
         done();
@@ -136,7 +136,7 @@ describe('tracklist', function () {
       req.params.id = currTracklist.id;
       req.session.userId = currUserId;
 
-      tracklist.delete(req, function (err, t) {
+      tracklist.del(req, function (err, t) {
         should.exist(t);
         done();
       });
