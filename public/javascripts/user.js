@@ -17,6 +17,7 @@ define(['jquery', 'utils'],
           utils.loadTemplate(data.template, data);
         } else {
           $.get(windowPath, function (data) {
+            document.title = 'Trakker: ' + data.data.artist + ' - ' + data.data.title;
             utils.loadTemplate(data.template, data);
           });
         }
