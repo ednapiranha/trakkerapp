@@ -17,7 +17,9 @@ define(['jquery', 'utils'],
           utils.loadTemplate(data.template, data);
         } else {
           $.get(windowPath, function (data) {
-            document.title = 'Trakker: ' + data.data.artist + ' - ' + data.data.title;
+            if (data.data.artist) {
+              document.title = 'Trakker: ' + data.data.artist + ' - ' + data.data.title;
+            }
             utils.loadTemplate(data.template, data);
           });
         }
