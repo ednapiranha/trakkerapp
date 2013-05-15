@@ -12,7 +12,7 @@ define(['jquery', 'utils'],
         type: 'POST',
         dataType: 'json'
       }).done(function (data) {
-        document.title = 'Trakker: ' + data.data.artist + ' - ' + data.data.title;
+        document.title = data.data.artist + ' - ' + data.data.title;
         utils.loadTemplate(data.template, data);
       }).fail(function (data) {
         console.log('could not add tracklist');
