@@ -17,7 +17,7 @@ define(['jquery', 'utils'],
           utils.loadTemplate(data.template, data);
         } else {
           $.get(windowPath, function (data) {
-            if (data.data.artist) {
+            if (data.data && data.data.artist) {
               document.title = data.data.artist + ' - ' + data.data.title;
             }
             utils.loadTemplate(data.template, data);
