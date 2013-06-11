@@ -6,3 +6,4 @@ public/javascripts/lib/nunjucks.js
 public/stylesheets/main-min.css
 public/javascripts/local_settings.js
 public/javascripts/templates.js
+npm-debug.log
